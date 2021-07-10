@@ -51,14 +51,15 @@
                         <h5>Create Comment this page</h5>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="{{ url('/comments/new')}}" method="POST">
+                         @csrf
                             <div class="mb-3">
-                                <label for="name_comments" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name_comments" placeholder="name@example.com">
+                                <label for="name_comments" class="form-label">Author</label>
+                                <input type="number" name="name_comments" class="form-control" id="name_comments">
                             </div>
                             <div class="mb-3">
                                 <label for="txt_comments" class="form-label">Comment</label>
-                                <textarea class="form-control" id="txt_comments" rows="3"></textarea>
+                                <textarea name="txt_comments" class="form-control" id="txt_comments" rows="3"></textarea>
                             </div>
                             <input type="hidden" name="article" value="{{ $data->id }}">
                             <div class="mb-3">

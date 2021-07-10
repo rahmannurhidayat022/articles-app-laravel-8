@@ -237,4 +237,32 @@ class SiteController extends Controller
 
         return view('guest.articles-detail', ['data' => $data]);
     }
+
+    public function addComments(Request $req)
+    {
+        if ($req->isMethod('post')) {
+            $article = $req->input('article');
+            $name = $req->input('name_comments');
+            $comment = $req->input('txt_comments');
+            $dataModel = [
+                'resource' => []
+            ];
+
+            $dataModel['resource'][] = [
+                'article' => $article,
+                'author' => $name,
+                'content' => $comment,
+            ];
+
+            try {
+                $reqData = $this->apiClient->post('comments', [
+                    'json' => $dataModel
+                ]);
+
+                return redirect("guest/articles/{$article}");
+            } catch (Exception $e) {
+                return 'send comments gagal';
+            }
+        }
+    }
 }
