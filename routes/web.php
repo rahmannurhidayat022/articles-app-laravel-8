@@ -13,18 +13,19 @@ use App\Http\Controllers\SiteController;
 |
 */
 
-Route::get('/', [SiteController::class, 'guestArticles'])->name('guest');
-Route::get('/guest/articles/{id}', [SiteController::class, 'guestArticlesDetail'])->name('detail');
-Route::post('/comments/new', [SiteController::class, 'addComments']);
-
-
-Route::get('/articles/detail/{id}', [SiteController::class, 'articlesDetail'])->name('detail');
-Route::match(['get', 'post'], '/articles/new/', [SiteController::class, 'articlesAdd'])->name('add');
-Route::match(['get', 'post'], '/articles/edit/{id}', [SiteController::class, 'articlesEdit'])->name('edit');
-Route::delete('/articles/delete/{id}', [SiteController::class, 'articlesDelete'])->name('delete');
-Route::post('/register/author', [SiteController::class, 'authors'])->name('authors');
-
+Route::middleware(['guest'])->group(function () {
+ Route::get('/', [SiteController::class, 'guestArticles'])->name('guest');
+ Route::get('/guest/articles/{id}', [SiteController::class, 'guestArticlesDetail'])->name('detail');
+ Route::post('/comments/new', [SiteController::class, 'addComments']);
+});
 
 Auth::routes();
 
-Route::get('/home', [SiteController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+ Route::get('/home', [SiteController::class, 'index'])->name('home');
+ Route::get('/articles/detail/{id}', [SiteController::class, 'articlesDetail'])->name('detail');
+ Route::match(['get', 'post'], '/articles/new/', [SiteController::class, 'articlesAdd'])->name('add');
+ Route::match(['get', 'post'], '/articles/edit/{id}', [SiteController::class, 'articlesEdit'])->name('edit');
+ Route::delete('/articles/delete/{id}', [SiteController::class, 'articlesDelete'])->name('delete');
+ Route::post('/register/author', [SiteController::class, 'authors'])->name('authors');
+});
