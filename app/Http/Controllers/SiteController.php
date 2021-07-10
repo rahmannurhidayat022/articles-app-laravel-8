@@ -17,7 +17,6 @@ class SiteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
         $this->apiClient = new Client([
             'base_uri' => self::API_BASE,
             'headers' => [
@@ -218,7 +217,7 @@ class SiteController extends Controller
             }
         });
 
-        return view('guest', ['data' => $data]);
+        return view('guest.index', ['data' => $data]);
     }
 
     public function guestArticlesDetail($id)
@@ -236,6 +235,6 @@ class SiteController extends Controller
             }
         });
 
-        return view('authors.articles-detail', ['data' => $data]);
+        return view('guest.articles-detail', ['data' => $data]);
     }
 }
