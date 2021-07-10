@@ -21,7 +21,7 @@
                 <div class="col-sm 12 col-md-6">
                     <div id="{{ $item->id }}" class="card text-left my-2">
                         <div class="card-body">
-                            <a href="{{ url('guest/articles/detail/'.$item->id) }}" class="nav-link p-0 text-dark">
+                            <a href="{{ url('guest/articles/'.$item->id) }}" class="nav-link p-0 text-dark">
                                 <h3 class="card-title">{{ $item->title }}</h3>
                             </a>
                             <p class="card-text">{!! $item->content !!}</p>
