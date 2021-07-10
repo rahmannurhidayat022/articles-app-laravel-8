@@ -1,30 +1,74 @@
 @extends('layouts.app')
 
 @section('content')
- <div class="row justify-content-center">
-  <div class="col-md-12">
-   <div class="card">
-       <div class="card-header">
-           <h2 class="h2"><i class="bi bi-book"> </i>{{ $data->title }}</h2>
-         <span class="text-muted">Author : {{$data->author }}</span>
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h2"><i class="bi bi-book"> </i>{{ $data->title }}</h2>
+                <span class="text-muted">Author : {{$data->author }}</span>
 
-       </div>
+            </div>
 
-     <div class="row">
-      <div class="col-sm 12 col-md-12">
-       <div id="{{ $data->id }}" class="card text-left my-2">
-        <div class="card-body">
-         {{-- <h3 class="card-title">{{ $data->title }}</h3>
-         <span class="text-muted">Author : {{$data->author }}</span> --}}
-         <p class="card-text my-4">{!! $data->content !!}</p>
-         <hr>
-         <span class="text-muted">Writen at {{$data->created_at }} and Published at {{ $data->published_at }}</span>
+            <div class="row">
+                <div class="col-sm 12 col-md-12">
+                    <div id="{{ $data->id }}" class="card text-left my-2">
+                        <div class="card-body">
+                            {{-- <h3 class="card-title">{{ $data->title }}</h3>
+                            <span class="text-muted">Author : {{$data->author }}</span> --}}
+                            <p class="card-text my-4">{!! $data->content !!}</p>
+                            <hr>
+                            <span class="text-muted">Writen at {{$data->created_at }} and Published at {{ $data->published_at }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
-      </div>
-     </div>
     </div>
-   </div>
-  </div>
- </div>
+    <div class="col-md-12">
+        <div id="comments" class="row my-4">
+            <div class="col-sm-12">
+                <div class="card p-4">
+                    <div class="card-title">
+                        <h5>
+                            Comments
+                        </h5>
+                    </div>
+                    <div id="1" class="comment">
+                        <h6 class="h6 text-primary">Dari : Anonymous</h6>
+                        <p>HAhah atikelnya menarik,aku nantikan karya mu</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div id="createComment" class="row my-2">
+            <div class="col-sm-6">
+                <div class="card p-3">
+                    <div class="card-title">
+                        <h5>Create Comment this page</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="name_comments" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name_comments" placeholder="name@example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txt_comments" class="form-label">Comment</label>
+                                <textarea class="form-control" id="txt_comments" rows="3"></textarea>
+                            </div>
+                            <input type="hidden" name="article" value="{{ $data->id }}">
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
