@@ -34,11 +34,16 @@
                             Comments
                         </h5>
                     </div>
-                    <div id="1" class="comment">
-                        <h6 class="h6 text-primary">Dari : Anonymous</h6>
-                        <p>HAhah atikelnya menarik,aku nantikan karya mu</p>
+                    @foreach ($comments as $item)
+                    @if ($data->id == $item->article)
+                    <div id="{{ $item->id }}" class="comment">
+                        <h6 class="h6 text-primary">Dari Author: {{ $item->author }}</h6>
+                        <p>{{ $item->content }}</p>
+                        <small class="text-muted">{{ $item->created_at }}</small>
                         <hr>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -52,7 +57,7 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ url('/comments/new')}}" method="POST">
-                         @csrf
+                            @csrf
                             <div class="mb-3">
                                 <label for="name_comments" class="form-label">Author</label>
                                 <input type="number" name="name_comments" class="form-control" id="name_comments">

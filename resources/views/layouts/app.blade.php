@@ -35,6 +35,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @guest
+                        <li class="nav-item">
+                            <a href="{{ url('/') }}" class="nav-link">Articles</a>
+                        </li>
+                        @endguest
                         @auth
                         <li class="nav-item">
                             <a href="{{ url('/home') }}" class="nav-link">My Articles</a>

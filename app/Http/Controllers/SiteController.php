@@ -235,7 +235,21 @@ class SiteController extends Controller
             }
         });
 
-        return view('guest.articles-detail', ['data' => $data]);
+        $comments = $this->getComments();
+
+        return view('guest.articles-detail', ['data' => $data, 'comments' => $comments]);
+    }
+
+    public function getComments()
+    {
+        try {
+            $reqData = $this->apiClient->get('comments');
+            $comments = json_decode($reqData->getBody())->resource;
+        } catch (RequestException $e) {
+            return [];
+        }
+
+        return $comments;
     }
 
     public function addComments(Request $req)
