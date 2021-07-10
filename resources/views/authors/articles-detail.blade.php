@@ -42,6 +42,29 @@
     </div>
    </div>
   </div>
+  <div class="col-md-12">
+    <div id="comments" class="row my-4">
+        <div class="col-sm-12">
+            <div class="card p-4">
+                <div class="card-title">
+                    <h5>
+                        Comments
+                    </h5>
+                </div>
+                @foreach ($comments as $item)
+                @if ($data->id == $item->article)
+                <div id="{{ $item->id }}" class="comment">
+                    <h6 class="h6 text-primary">Dari Author: {{ $item->author }}</h6>
+                    <p>{{ $item->content }}</p>
+                    <small class="text-muted">{{ $item->created_at }}</small>
+                    <hr>
+                </div>
+                @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
  </div>
 </div>
 @endsection

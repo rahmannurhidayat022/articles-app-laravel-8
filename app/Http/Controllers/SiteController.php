@@ -68,7 +68,9 @@ class SiteController extends Controller
             }
         });
 
-        return view('authors.articles-detail', ['data' => $data]);
+        $comments = $this->getComments();
+
+        return view('authors.articles-detail', ['data' => $data, 'comments' => $comments]);
     }
 
     public function articlesAdd(Request $req)
