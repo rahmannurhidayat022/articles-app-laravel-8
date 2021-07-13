@@ -31,4 +31,5 @@ Route::middleware(['auth'])->group(function () {
  Route::delete('/articles/delete/{id}', [SiteController::class, 'articlesDelete'])->name('delete');
  Route::post('/register/author', [AuthorsController::class, 'authors'])->name('authors');
  Route::match(['get', 'post'], '/author/profile', [AuthorsController::class, 'authors']);
+ Route::get('/info', [SiteController::class, 'info']);
 });

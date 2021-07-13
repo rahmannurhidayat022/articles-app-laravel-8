@@ -115,7 +115,7 @@
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ url('about/') }}">
+                                <a class="nav-link text-white" href="{{ url('/info') }}">
                                   <span><i class="bi bi-info-circle"></i></span>
                                   About
                                 </a>

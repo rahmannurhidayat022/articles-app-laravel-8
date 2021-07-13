@@ -186,4 +186,9 @@ class SiteController extends Controller
             abort(404);
         }
     }
+
+    public function info()
+    {
+        return view('authors.info');
+    }
 }
