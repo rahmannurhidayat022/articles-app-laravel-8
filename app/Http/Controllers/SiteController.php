@@ -83,7 +83,7 @@ class SiteController extends Controller
             ];
 
             date_default_timezone_set('Asia/Jakarta');
-            $date = date('d-m-Y');
+            $date = date('Y-m-d h:i:sa');
 
             $dataModel['resource'][] = [
                 'author' => '69',
@@ -138,7 +138,7 @@ class SiteController extends Controller
             ];
 
             date_default_timezone_set('Asia/Jakarta');
-            $date = date('d-m-Y');
+            $date = date('Y-m-d h:i:sa');
 
             $dataModel['resource'][] = [
                 'id' => $id,

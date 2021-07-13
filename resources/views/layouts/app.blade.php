@@ -40,14 +40,6 @@
                             <a href="{{ url('/') }}" class="nav-link">Articles</a>
                         </li>
                         @endguest
-                        @auth
-                        <li class="nav-item">
-                            <a href="{{ url('/home') }}" class="nav-link">My Articles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/articles/new') }}" class="nav-link">Create Articles</a>
-                        </li>
-                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

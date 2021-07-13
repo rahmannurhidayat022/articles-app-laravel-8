@@ -5,7 +5,7 @@
  <div class="row justify-content-center">
   <div class="col-md-12">
    <div class="card">
-    <div class="card-header d-flex justify-content-between">
+    <div class="card-header d-flex justify-content-between bg-dark text-white">
      <h2 class="h2"><i class="bi bi-book"></i> Articles List</h2>
      <div class="action d-flex">
       <a href="{{ url('articles/edit/'.$data->id) }}" class="btn btn-warning mx-2">

@@ -13,11 +13,9 @@ use App\Http\Controllers\SiteController;
 |
 */
 
-Route::middleware(['guest'])->group(function () {
- Route::get('/', [SiteController::class, 'guestArticles'])->name('guest');
- Route::get('/guest/articles/{id}', [SiteController::class, 'guestArticlesDetail'])->name('detail');
- Route::post('/comments/new', [SiteController::class, 'addComments']);
-});
+Route::get('/', [SiteController::class, 'guestArticles'])->name('guest');
+Route::get('/guest/articles/{id}', [SiteController::class, 'guestArticlesDetail'])->name('detail');
+Route::post('/comments/new', [SiteController::class, 'addComments']);
 
 Auth::routes();
 
