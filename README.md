@@ -10,16 +10,20 @@ Must git, composer, web server, nodejs, local database installed in your device.
 after that git clone.
 
 > composer install
-> for install package laravel
+
+for install package laravel
 
 > npm install
-> for install package nodejs
+
+for install package nodejs
 
 > npm run dev
-> for sycn code laravel with nodejs
+
+for sycn code laravel with nodejs
 
 > php artisan key:generate
-> generate env key
+
+generate env key
 
 and than configuration your database local
 
