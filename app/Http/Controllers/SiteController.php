@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\CommentsController;
 
 class SiteController extends Controller
 {
@@ -23,6 +24,7 @@ class SiteController extends Controller
                 'X-DreamFactory-API-Key' => self::API_KEY
             ]
         ]);
+        $this->comments = new CommentsController();
     }
 
     public function index()
@@ -68,7 +70,7 @@ class SiteController extends Controller
             }
         });
 
-        $comments = $this->getComments();
+        $comments = $this->comments->getComments();
 
         return view('authors.articles-detail', ['data' => $data, 'comments' => $comments]);
     }
@@ -182,103 +184,6 @@ class SiteController extends Controller
             }
         } catch (Exception $e) {
             abort(404);
-        }
-    }
-
-    public function authors(Request $req)
-    {
-        $name = $req->input('name_author');
-        $email = $req->input('email_author');
-
-        $dataModel['resource'][] = [
-            'name' => $name,
-            'email' => $email
-        ];
-
-        try {
-            $reqData = $this->apiClient->post('authors', [
-                'json' => $dataModel
-            ]);
-
-            return redirect('/home');
-        } catch (Exception $e) {
-            return back();
-        }
-    }
-
-    //guest
-    public function guestArticles()
-    {
-        $data = Cache::get('index', function () {
-            try {
-                $reqData = $this->apiClient->get('articles');
-                $resource = json_decode($reqData->getBody())->resource;
-                Cache::add('index', $resource);
-            } catch (RequestException $e) {
-                return [];
-            }
-        });
-
-        return view('guest.index', ['data' => $data]);
-    }
-
-    public function guestArticlesDetail($id)
-    {
-        $key = "articles/{$id}";
-        $data = Cache::get($key, function () use ($key) {
-            try {
-                $reqData = $this->apiClient->get($key);
-                $resource = json_decode($reqData->getBody());
-
-                Cache::add($key, $resource);
-                return $resource;
-            } catch (Exception $e) {
-                abort(404);
-            }
-        });
-
-        $comments = $this->getComments();
-
-        return view('guest.articles-detail', ['data' => $data, 'comments' => $comments]);
-    }
-
-    public function getComments()
-    {
-        try {
-            $reqData = $this->apiClient->get('comments');
-            $comments = json_decode($reqData->getBody())->resource;
-        } catch (RequestException $e) {
-            return [];
-        }
-
-        return $comments;
-    }
-
-    public function addComments(Request $req)
-    {
-        if ($req->isMethod('post')) {
-            $article = $req->input('article');
-            $name = $req->input('name_comments');
-            $comment = $req->input('txt_comments');
-            $dataModel = [
-                'resource' => []
-            ];
-
-            $dataModel['resource'][] = [
-                'article' => $article,
-                'author' => $name,
-                'content' => $comment,
-            ];
-
-            try {
-                $reqData = $this->apiClient->post('comments', [
-                    'json' => $dataModel
-                ]);
-
-                return redirect("guest/articles/{$article}");
-            } catch (Exception $e) {
-                return 'send comments gagal';
-            }
         }
     }
 }
