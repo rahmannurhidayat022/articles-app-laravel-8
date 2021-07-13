@@ -86,7 +86,7 @@ class SiteController extends Controller
             $date = date('d-m-Y');
 
             $dataModel['resource'][] = [
-                'author' => '70',
+                'author' => '69',
                 'title' => $title,
                 'content' => $content,
                 'published_at' => $date,
@@ -103,7 +103,7 @@ class SiteController extends Controller
 
                 return redirect("/articles/detail/{$newId}");
             } catch (Exception $e) {
-                abort(501);
+                return 'gagal add article';
             }
         }
 
@@ -149,6 +149,7 @@ class SiteController extends Controller
                 'created_at' => $created_at
             ];
 
+
             try {
                 $reqData = $this->apiClient->put('articles', [
                     'json' => $dataModel
@@ -190,7 +191,6 @@ class SiteController extends Controller
         $email = $req->input('email_author');
 
         $dataModel['resource'][] = [
-            'id' => '70',
             'name' => $name,
             'email' => $email
         ];

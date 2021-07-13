@@ -11,19 +11,19 @@ Articles
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Author</th>
                 <th scope="col">Title</th>
+                <th scope="col">Author</th>
                 <th scope="col">Writen</th>
                 <th scope="col">Publish</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
+            @foreach ($data as $key => $item)
             <tr>
-                <td>#</td>
-                <td>{{ $item->author }}</td>
+                <td>{{ $key+1 }}</td>
                 <td>{{ $item->title }}</td>
+                <td>{{ $item->author }}</td>
                 <td>{{ $item->created_at }}</td>
                 @if ($item->published_at == null)
                 <td class="text-info">DRAF</td>
