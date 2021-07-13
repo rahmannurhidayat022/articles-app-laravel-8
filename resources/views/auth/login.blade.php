@@ -3,10 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+        <div class="col-md-6 m-0 p-0">
+            <img src="https://picsum.photos/id/180/600/500" alt="login" class="img-fluid">
+        </div>
+        <div class="col-md-6 m-0 p-0">
+            <div class="card m-0 border-0 h-100">
+                <div class="card-title mt-5 ml-5">
+                    <h2 class="fw-bolder" style="font-size: 35px">Welcome Author</h2>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
