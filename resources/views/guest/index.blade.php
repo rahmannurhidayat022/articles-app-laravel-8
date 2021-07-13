@@ -4,10 +4,7 @@
 @if ($data != null)
 <div class="row justify-content-center">
 <div class="col-md-12">
-    <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h2 class="h2">Articles</h2>
-        </div>
+    <div class="card border-0">
 
         <div class="card-body">
             @if (session('status'))
@@ -18,14 +15,18 @@
 
             <div class="row">
                 @foreach ($data as $item)
-                <div class="col-sm 12 col-md-6">
-                    <div id="{{ $item->id }}" class="card text-left my-2">
-                        <div class="card-body">
-                            <a href="{{ url('guest/articles/'.$item->id) }}" class="nav-link p-0 text-dark">
-                                <h3 class="card-title">{{ $item->title }}</h3>
+                <div class="col-sm 12 col-md-12">
+                    <div id="{{ $item->id }}" class="card text-left my-2 border-0">
+                        <div class="card-body p-0 m-0">
+                            <p class="card-text p-0 m-0" style="font-size: 14px;font-weight: normal">
+                                https://www.artikelku.com/guest/articles/{{ $item->id }} 
+                                    <span class="text-muted"><i class="bi bi-caret-down-fill"></i></span></p>
+                            <a href="{{ url('guest/articles/'.$item->id) }}" class="m-0 p-0 text-capitalize">
+                                <h3 class="card-title" style="font-size: 20px;line-height: 1.3">{{ $item->title }}</h3>
                             </a>
-                            <p class="card-text">{!! $item->content !!}</p>
-                            <p class="card-text">Created at {{ $item->created_at }} and Published at {{ $item->published_at }}</p>
+                            <p class="card-text p-0 m-0" style="font-size: 14px;font-weight: normal">{!! $item->content !!}</p>
+                            <small class="text-muted">Created at {{ $item->created_at }} and Published at {{ $item->published_at }}</small>
+                            <hr>
                         </div>
                     </div>
                 </div>
