@@ -108,6 +108,18 @@
                                 Create Articles
                               </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ url('/author/profile') }}">
+                                  <span><i class="bi bi-person-circle"></i></span>
+                                  Profile
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ url('about/') }}">
+                                  <span><i class="bi bi-info-circle"></i></span>
+                                  About
+                                </a>
+                              </li>
                           </ul>
                         </div>
                       </nav>
